@@ -14,7 +14,7 @@ public class FileChoose  {
 	public static void FileExplorer() {
 		JFileChooser select = new JFileChooser("");
 		select.setMultiSelectionEnabled(true);
-		int res = select.showDialog(Fenetre.frame, "Analyser");
+		int res = select.showDialog(Window.frame, "Analyser");
 		if (res == JFileChooser.APPROVE_OPTION) {
 			File[] fs = select.getSelectedFiles();
 			System.out.println("Nom des fichiers sélectionnées :");
