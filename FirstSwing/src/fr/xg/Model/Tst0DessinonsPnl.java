@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 
 
-class Tst0DessinonsPnl extends JPanel
+public class Tst0DessinonsPnl extends JPanel
 {
 	private static final double pi = 3.141592654;
 	

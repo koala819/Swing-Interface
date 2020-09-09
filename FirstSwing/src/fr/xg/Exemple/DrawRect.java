@@ -1,4 +1,4 @@
-package fr.xg.Model;
+package fr.xg.Exemple;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

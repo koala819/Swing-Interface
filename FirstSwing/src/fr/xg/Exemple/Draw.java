@@ -1,7 +1,7 @@
-package fr.xg.Model;
+package fr.xg.Exemple;
 
 import java.awt.Toolkit;
-
+import fr.xg.Model.Tst0DessinonsPnl;
 import javax.swing.JFrame;
 
 public class Draw
