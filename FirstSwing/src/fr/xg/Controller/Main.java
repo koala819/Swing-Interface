@@ -1,12 +1,12 @@
 package fr.xg.Controller;
 
-import fr.xg.Model.Window;
+import fr.xg.Model.DoublePanel;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Window.Window();
+		DoublePanel dblPanel = new DoublePanel();
 	}
 
 	

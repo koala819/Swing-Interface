@@ -11,15 +11,18 @@ public class FileChoose  {
 	 * https://www.youtube.com/watch?v=GO829h_Cc-w
 	 * TODO : rajouter options :: Filtre sur les fichiers à afficher 
 	 */
-	public static void FileExplorer() {
+	public static void FileExplorer()
+	{
 		JFileChooser select = new JFileChooser("");
 		select.setMultiSelectionEnabled(true);
-		int res = select.showDialog(Window.frame, "Analyser");
+		int res = select.showDialog(DoublePanel.frame, "Analyser");
 		if (res == JFileChooser.APPROVE_OPTION) {
-			File[] fs = select.getSelectedFiles();
+			File[] selectedFiles = select.getSelectedFiles();
 			System.out.println("Nom des fichiers sélectionnées :");
-			for (File f: fs) {
-				System.out.println(f.getName());
+			for (File file: selectedFiles)
+			{
+				System.out.println("REPERTOIRE = " + file.getParentFile());
+				System.out.println(file.getName());
 				
 			}
 		} else {

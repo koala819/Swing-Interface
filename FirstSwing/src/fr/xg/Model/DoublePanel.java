@@ -2,36 +2,10 @@ package fr.xg.Model;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Composite;
 import java.awt.Container;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Paint;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.Stroke;
-import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ImageObserver;
-import java.awt.image.RenderedImage;
-import java.awt.image.renderable.RenderableImage;
-import java.text.AttributedCharacterIterator;
-import java.util.Map;
 
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -45,11 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSplitPane;
 
-public class Window
+public class DoublePanel
 {
 	protected static Component frame;
 
-	public static void Window() {
+	public DoublePanel()
+	{
 		//Création barre de menu
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Fichier");
@@ -74,22 +49,17 @@ public class Window
 		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setJMenuBar(menuBar);
-		
-
-
 
 		/*Contenu de la fenêtre avec deux zones
 		 * zone gauche :: zone_outil (JCheckBox & JRadioButton)
 		 * zone droite :: zone_dessin
 		 * */
 		JPanel zone_outil= new JPanel();
-	    JPanel zone_dessin = new JPanel();
-	    Container container = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-	    frame.getContentPane().add(container);
+	    JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+	    frame.getContentPane().add(splitPane);
 	    zone_outil.setBackground(Color.ORANGE);
 	    zone_outil.setLayout(new GridLayout(3, 1));
-	    zone_dessin.setBackground(Color.DARK_GRAY);
-	    container.add(zone_outil);
+	    splitPane.add(zone_outil);
 	    
 	    //Création JCheckBox
 	    JCheckBox logging = new JCheckBox("Enable logging");
@@ -119,11 +89,14 @@ public class Window
 	    zone_outil.add(boxHorizontal);
 	    
 	    //DESSINONS 
-	    container.add(zone_dessin);
+	    Tst0DessinonsPnl zone_dessin = new Tst0DessinonsPnl();
+	    Tst0DessinonsPnl.toto();
+	    
+	    splitPane.add(zone_dessin);
+//	    zone_dessin.setBackground(Color.DARK_GRAY);
 //	    zone_dessin.add(new DrawRect());
-	    zone_dessin.add(zone_dessin, new Draw());
-	    JPanel panel = new JPanel();
-//	    zone_dessin.add(panel, new Graphics()
+//	    zone_dessin.add(frame, new Draw(), 0);
+//	    zone_dessin.add(new DrawRect());
 	    
 	    //OBLIGATOIRE de mettre à la fin pour afficher le rendu
 	    frame.setVisible(true);
@@ -131,4 +104,5 @@ public class Window
 
 
 	}
+
 }
