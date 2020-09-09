@@ -122,6 +122,8 @@ public class Window
 	    container.add(zone_dessin);
 //	    zone_dessin.add(new DrawRect());
 	    zone_dessin.add(zone_dessin, new Draw());
+	    JPanel panel = new JPanel();
+//	    zone_dessin.add(panel, new Graphics()
 	    
 	    //OBLIGATOIRE de mettre à la fin pour afficher le rendu
 	    frame.setVisible(true);
