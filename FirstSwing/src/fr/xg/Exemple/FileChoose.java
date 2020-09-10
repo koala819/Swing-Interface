@@ -1,8 +1,10 @@
-package fr.xg.Model;
+package fr.xg.Exemple;
 
 import java.io.File;
 
 import javax.swing.JFileChooser;
+
+import fr.xg.Model.DoublePanel;
 
 public class FileChoose  {
 	
@@ -15,7 +17,7 @@ public class FileChoose  {
 	{
 		JFileChooser select = new JFileChooser("");
 		select.setMultiSelectionEnabled(true);
-		int res = select.showDialog(DoublePanel.frame, "Analyser");
+		int res = select.showDialog(DoublePanel.getFrame(), "Analyser");
 		if (res == JFileChooser.APPROVE_OPTION) {
 			File[] selectedFiles = select.getSelectedFiles();
 			System.out.println("Nom des fichiers sélectionnées :");
