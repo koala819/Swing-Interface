@@ -53,4 +53,5 @@ public class Tst0DessinonsPnl extends JPanel
         graf2D.setColor(Color.ORANGE);
         graf2D.draw(rect);
      }
+
 }
