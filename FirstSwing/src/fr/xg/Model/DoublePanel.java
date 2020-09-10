@@ -120,4 +120,8 @@ public class DoublePanel
 
 	}
 
+	public static Component getFrame() {
+		return frame;
+	}
+
 }

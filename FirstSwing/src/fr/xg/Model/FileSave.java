@@ -22,7 +22,7 @@ public class FileSave  {
 		select.setDialogTitle("Spécifier le fichier à sauvegarder");
 		select.addChoosableFileFilter(select.getAcceptAllFileFilter());
 		select.setFileFilter(filter);
-		int res = select.showSaveDialog(DoublePanel.frame);
+		int res = select.showSaveDialog(DoublePanel.getFrame());
 		if (res == JFileChooser.APPROVE_OPTION)  {
 			File fileToSave = select.getSelectedFile();
 			BufferedWriter writer = null;
