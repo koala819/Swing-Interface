@@ -71,7 +71,7 @@ public class DoublePanel
 		//Création JCheckBox
 		Box boxVerticale = Box.createVerticalBox();
 		/* la couleur de fond du dessin à droite devient jaune
-		 * En reclickant dessus, la couleur de fond redevient blanche.
+		 * En reclickant dessus, la couleur de fond redevient dark_grey.
 		 */
 		JCheckBox couleurDeFond = new JCheckBox("Couleur de fond");
 		boxVerticale.add(couleurDeFond);
@@ -80,7 +80,7 @@ public class DoublePanel
 				if (couleurDeFond.isSelected()) {
 					zone_dessin.setBackground(Color.YELLOW);
 				} else {
-					zone_dessin.setBackground(Color.WHITE);
+					zone_dessin.setBackground(Color.DARK_GRAY);
 				}
 
 			}
@@ -91,6 +91,20 @@ public class DoublePanel
 		 */
 		JCheckBox couleurDuRectangle = new JCheckBox("Couleur du rectangle");
 		boxVerticale.add(couleurDuRectangle);
+		couleurDuRectangle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (couleurDuRectangle.isSelected()) {
+//					Tst0DessinonsPnl toto = new Tst0DessinonsPnl();
+//					toto.setCouleur1(Color.GREEN);
+					zone_dessin.setCouleur1(Color.GREEN);
+					
+					
+				} else {
+					zone_dessin.setCouleur1(Color.ORANGE);
+				}
+
+			}
+		});
 		
 		zone_outil.add(boxVerticale);
 
