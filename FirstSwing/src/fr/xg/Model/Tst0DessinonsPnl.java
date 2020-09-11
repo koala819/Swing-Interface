@@ -70,7 +70,6 @@ public class Tst0DessinonsPnl extends JPanel
 	
 	public void setCouleur1(Color couleur1) {
 		this.couleur1 = couleur1;
-		repaint();
 	}
 
 	

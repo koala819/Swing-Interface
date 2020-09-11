@@ -96,10 +96,11 @@ public class DoublePanel
 //					Tst0DessinonsPnl toto = new Tst0DessinonsPnl();
 //					toto.setCouleur1(Color.GREEN);
 					zone_dessin.setCouleur1(Color.GREEN);
-					
+					zone_dessin.repaint();
 					
 				} else {
 					zone_dessin.setCouleur1(Color.ORANGE);
+					zone_dessin.repaint();
 				}
 
 			}
