@@ -1,7 +1,7 @@
 package fr.xg.Exemple;
 
 import java.awt.Toolkit;
-import fr.xg.Model.Tst0DessinonsPnl;
+import fr.xg.Model.U3D_DessineMoiUnRectangle;
 import javax.swing.JFrame;
 
 public class Draw
@@ -11,7 +11,7 @@ public class Draw
 		JFrame frame = new JFrame();		
 		frame.setSize (Toolkit.getDefaultToolkit ().getScreenSize ());
 		frame.setResizable (false);
-		frame.setContentPane (new Tst0DessinonsPnl());
+		frame.setContentPane (new U3D_DessineMoiUnRectangle());
 		frame.setVisible (true);
 	}
 	

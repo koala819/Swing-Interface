@@ -19,11 +19,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JSplitPane;
 import javax.swing.RepaintManager;
 
-public class DoublePanel
+public class U3D_FenetreAvec2Jpanel
 {
 	protected static Component frame;
 
-	public DoublePanel()
+	public U3D_FenetreAvec2Jpanel()
 	{
 		//Création barre de menu
 		JMenuBar menuBar = new JMenuBar();
@@ -39,7 +39,7 @@ public class DoublePanel
 			public void actionPerformed(ActionEvent e) {
 				//FileChoose.FileExplorer();
 				//FileChoose.Check();
-				FileSave fS = new FileSave();
+				U3D_FenetreEnregistrement fS = new U3D_FenetreEnregistrement();
 				fS.Explore();
 			}
 		});
@@ -64,7 +64,7 @@ public class DoublePanel
 		splitPane.add(zone_outil);
 
 		//DESSINONS 
-		Tst0DessinonsPnl zone_dessin = new Tst0DessinonsPnl();
+		U3D_DessineMoiUnRectangle zone_dessin = new U3D_DessineMoiUnRectangle();
 		splitPane.add(zone_dessin);
 
 		//Création JCheckBox

@@ -10,13 +10,13 @@ import javax.swing.JPanel;
 
 
 
-public class Tst0DessinonsPnl extends JPanel
+public class U3D_DessineMoiUnRectangle extends JPanel
 {
 	private static final double pi = 3.141592654;
 	
 	private Color couleur1 = Color.PINK;
 	
-	public Tst0DessinonsPnl()
+	public U3D_DessineMoiUnRectangle()
 	{
 		super();
 	}

@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import fr.xg.Model.DoublePanel;
+import fr.xg.Model.U3D_FenetreAvec2Jpanel;
 
 public class FileChoose  {
 	
@@ -17,7 +17,7 @@ public class FileChoose  {
 	{
 		JFileChooser select = new JFileChooser("");
 		select.setMultiSelectionEnabled(true);
-		int res = select.showDialog(DoublePanel.getFrame(), "Analyser");
+		int res = select.showDialog(U3D_FenetreAvec2Jpanel.getFrame(), "Analyser");
 		if (res == JFileChooser.APPROVE_OPTION) {
 			File[] selectedFiles = select.getSelectedFiles();
 			System.out.println("Nom des fichiers sélectionnées :");
