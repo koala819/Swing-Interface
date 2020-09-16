@@ -1,4 +1,4 @@
-package fr.xg.Model;
+package fr.xg.Model.DeuxDimensions;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class U3D_FenetreEnregistrementLectureFichier {
+public class U3D_FenetreExplorateurLectureFichier {
 	protected void lireLeFichierTXT(File fileToSave) {
 		FileReader fileReader;
 		try {
@@ -39,10 +39,10 @@ public class U3D_FenetreEnregistrementLectureFichier {
 		try ( FileInputStream fichierLectureContenu = new FileInputStream(fileToSave);
 				BufferedInputStream bufferLecture = new BufferedInputStream(fichierLectureContenu);
 				DataInputStream lectureDonneesDansFichier = new DataInputStream(bufferLecture);				) {
-			System.out.println(lectureDonneesDansFichier.readByte());
+//			System.out.println(lectureDonneesDansFichier.readByte());
 			System.out.println(lectureDonneesDansFichier.readDouble());
-			System.out.println(lectureDonneesDansFichier.readUTF());
-			System.out.println(lectureDonneesDansFichier.readUTF());
+//			System.out.println(lectureDonneesDansFichier.readUTF());
+//			System.out.println(lectureDonneesDansFichier.readUTF());
 			lectureDonneesDansFichier.close();} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

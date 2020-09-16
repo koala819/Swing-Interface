@@ -1,8 +1,10 @@
 package fr.xg.Exemple;
 
 import java.awt.Toolkit;
-import fr.xg.Model.U3D_DessineMoiUnRectangle;
+
 import javax.swing.JFrame;
+
+import fr.xg.Model.DeuxDimensions.U3D_DessineMoiUnRectangle;
 
 public class Draw
 {	

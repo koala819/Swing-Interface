@@ -1,10 +1,10 @@
-package fr.xg.Model;
+package fr.xg.Model.DeuxDimensions;
 
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-public class U3D_FenetreEnregistrementChoixExtension {
+public class U3D_FenetreExplorateurChoixExtension {
 	
 	public File FaisTonChoix(FileFilter choixUtilisateurExtension, File fileToSave) {
 		if (choixUtilisateurExtension.getDescription().equals("Text Files (*.txt)"))

@@ -1,4 +1,4 @@
-package fr.xg.Model;
+package fr.xg.Model.DeuxDimensions;
 import java.io.BufferedWriter;
 import java.io.File;
 
@@ -6,8 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class U3D_FenetreEnregistrement  {
-	U3D_Extension nomExtensionDuFichier;
+public class U3D_FenetreExplorateur  {
 	/*
 	 * tuto explication vidéo 
 	 * https://www.youtube.com/watch?v=GO829h_Cc-w
@@ -31,7 +30,7 @@ public class U3D_FenetreEnregistrement  {
 			 * si utilisateur laisse par défaut ce sera *.txt
 			 * création du fichier fileToSave
 			 */
-			U3D_FenetreEnregistrementChoixExtension fece = new U3D_FenetreEnregistrementChoixExtension();
+			U3D_FenetreExplorateurChoixExtension fece = new U3D_FenetreExplorateurChoixExtension();
 			fileToSave = fece.FaisTonChoix(choixUtilisateurExtension, fileToSave);
 
 			/*
@@ -41,7 +40,7 @@ public class U3D_FenetreEnregistrement  {
 			 * pour effectuer la conversion en binaire
 			 * Sinon on enregistre du texte en *.txt 
 			 */
-			U3D_FenetreEnregistrementSauvegardeFichier fesf = new U3D_FenetreEnregistrementSauvegardeFichier();
+			U3D_FenetreExplorateurSauvegardeFichier fesf = new U3D_FenetreExplorateurSauvegardeFichier();
 			if (choixUtilisateurExtension.getDescription().equals("Binary Files (*.bin)"))
 			{
 				fesf.enregistreLeFichierBIN(fileToSave);
@@ -55,7 +54,7 @@ public class U3D_FenetreEnregistrement  {
 			 * pour lire le binaire
 			 * Sinon lecture *.txt
 			 */
-			U3D_FenetreEnregistrementLectureFichier felf = new U3D_FenetreEnregistrementLectureFichier();
+			U3D_FenetreExplorateurLectureFichier felf = new U3D_FenetreExplorateurLectureFichier();
 			if (choixUtilisateurExtension.getDescription().equals("Binary Files (*.bin)"))
 			{
 				felf.lireLeFichierBIN(fileToSave);

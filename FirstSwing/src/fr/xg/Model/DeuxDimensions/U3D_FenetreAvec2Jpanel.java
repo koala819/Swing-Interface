@@ -1,4 +1,4 @@
-package fr.xg.Model;
+package fr.xg.Model.DeuxDimensions;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -39,7 +39,7 @@ public class U3D_FenetreAvec2Jpanel
 			public void actionPerformed(ActionEvent e) {
 				//FileChoose.FileExplorer();
 				//FileChoose.Check();
-				U3D_FenetreEnregistrement fS = new U3D_FenetreEnregistrement();
+				U3D_FenetreExplorateur fS = new U3D_FenetreExplorateur();
 				fS.Explore();
 			}
 		});

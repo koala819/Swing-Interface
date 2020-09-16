@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import fr.xg.Model.U3D_FenetreAvec2Jpanel;
+import fr.xg.Model.DeuxDimensions.U3D_FenetreAvec2Jpanel;
 
 public class FileChoose  {
 	

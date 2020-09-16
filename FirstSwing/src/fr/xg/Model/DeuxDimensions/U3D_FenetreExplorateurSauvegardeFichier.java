@@ -1,4 +1,4 @@
-package fr.xg.Model;
+package fr.xg.Model.DeuxDimensions;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class U3D_FenetreEnregistrementSauvegardeFichier {
+public class U3D_FenetreExplorateurSauvegardeFichier {
 	BufferedWriter writer;
 	protected void enregistreLeFichierTXT(File fileToSave) {
 		try {
@@ -37,10 +37,10 @@ public class U3D_FenetreEnregistrementSauvegardeFichier {
 				//DataOutputStream pour écrire des données au format binaire
 				DataOutputStream ecrireDonneesFormatBinaire = new DataOutputStream(bufferEnregistrement);
 				){
-			ecrireDonneesFormatBinaire.writeByte((byte) 123);
+			//ecrireDonneesFormatBinaire.writeByte((byte) 123);
 			ecrireDonneesFormatBinaire.writeDouble((double) Math.PI);
-			ecrireDonneesFormatBinaire.writeUTF("le chat est sage");
-			ecrireDonneesFormatBinaire.writeUTF((String) "Hello World");
+//			ecrireDonneesFormatBinaire.writeUTF("le chat est sage");
+//			ecrireDonneesFormatBinaire.writeUTF((String) "Hello World");
 			ecrireDonneesFormatBinaire.close();
 			/*
 			 * writeShort((short) 1_234);

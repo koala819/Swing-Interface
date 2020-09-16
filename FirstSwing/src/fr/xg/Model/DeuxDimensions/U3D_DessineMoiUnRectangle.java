@@ -1,4 +1,4 @@
-package fr.xg.Model;
+package fr.xg.Model.DeuxDimensions;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
