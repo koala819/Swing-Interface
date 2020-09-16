@@ -54,7 +54,7 @@ import java.awt.GraphicsConfiguration;
 /**
  * Simple Java 3D example program to display a spinning cube.
  */
-public class HelloUniverse extends javax.swing.JFrame {
+public class Cube extends javax.swing.JFrame {
 
     private SimpleUniverse univ = null;
     private BranchGroup scene = null;
@@ -118,7 +118,7 @@ public class HelloUniverse extends javax.swing.JFrame {
     /**
      * Creates new form HelloUniverse
      */
-    public HelloUniverse() {
+    public Cube() {
 	// Initialize the GUI components
 	initComponents();
 
@@ -158,7 +158,7 @@ public class HelloUniverse extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HelloUniverse().setVisible(true);
+                new Cube().setVisible(true);
             }
         });
     }

@@ -93,11 +93,11 @@ public class U3D_FenetreAvec2Jpanel
 		couleurDuRectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (couleurDuRectangle.isSelected()) {
-//					Tst0DessinonsPnl toto = new Tst0DessinonsPnl();
-//					toto.setCouleur1(Color.GREEN);
+					//					Tst0DessinonsPnl toto = new Tst0DessinonsPnl();
+					//					toto.setCouleur1(Color.GREEN);
 					zone_dessin.setCouleur1(Color.GREEN);
 					zone_dessin.repaint();
-					
+
 				} else {
 					zone_dessin.setCouleur1(Color.ORANGE);
 					zone_dessin.repaint();
@@ -105,7 +105,7 @@ public class U3D_FenetreAvec2Jpanel
 
 			}
 		});
-		
+
 		zone_outil.add(boxVerticale);
 
 		//Création JRadioButton
