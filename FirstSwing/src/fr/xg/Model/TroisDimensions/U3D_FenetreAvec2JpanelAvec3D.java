@@ -14,13 +14,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Canvas3D;
 import javax.media.j3d.GraphicsConfigTemplate3D;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import com.sun.j3d.exp.swing.JCanvas3D;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
 public class U3D_FenetreAvec2JpanelAvec3D  {
@@ -28,6 +28,7 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 	private JFrame frame = new JFrame();
 	private GridBagLayout grilleDePositionnement = new GridBagLayout();
 	private GridBagConstraints indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT = new GridBagConstraints();
+	BranchGroup scene = new BranchGroup();
 	public U3D_FenetreAvec2JpanelAvec3D()
 	{
 
@@ -67,25 +68,17 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		 * pour afficher la 3D
 		 */
 		
-		GraphicsConfigTemplate3D configurationGraphiqueDeLaTemplate3D = new GraphicsConfigTemplate3D();
-		JCanvas3D jCanvas3D = new JCanvas3D(configurationGraphiqueDeLaTemplate3D);
-		jPannelDiviseEnDeux.add(jCanvas3D);
-		jCanvas3D.setSize(2,2); // taille non prise en compte, mais utile pour la définition de l'objet SimpleUniverse
-		SimpleUniverse universe = new SimpleUniverse(jCanvas3D.getOffscreenCanvas3D());
+		//GraphicsConfigTemplate3D configurationGraphiqueDeLaTemplate3D = new GraphicsConfigTemplate3D();
+		Canvas3D Canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+		jPannelDiviseEnDeux.add(Canvas3D);
+		//jCanvas3D.setSize(2,2); // taille non prise en compte, mais utile pour la définition de l'objet SimpleUniverse
+		SimpleUniverse universe = new SimpleUniverse(Canvas3D);
 		// This will move the ViewPlatform back a bit so the
 		// objects in the scene can be viewed.
 		universe.getViewingPlatform().setNominalViewingTransform();
 		universe.getViewer().getView().setMinimumFrameCycleTime(30);
 
-		/*TODO : pour comprendre les éléments de la scène
-		 * fonction à écrire pour sortir les chlidren, 
-		 * qu'est-ce qu'une scène
-		 * de quoi est composé un arbre en 3D
-		 */
-		//        traceScene(scene);
-
-
-
+		
 		/*
 		 * BOUTONS
 		 * permet l'appel de formes 3D 
@@ -96,7 +89,13 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		jPannelZoneGauche.add(boutonNumberOne, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 BranchGroup scene = U3D_Forme3D_Texte3D.createSceneGraph(jCanvas3D, false, true);
+				
+				scene.setCapability(BranchGroup.ALLOW_DETACH);
+				scene.removeAllChildren();
+				BranchGroup childScene = U3D_Forme3D_Texte3D.createSceneGraph(Canvas3D, false, true);
+				scene.addChild(childScene);
+				
+				//
 				universe.addBranchGraph(scene);				
 			}
 		});
@@ -115,7 +114,7 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		});		
 		
 		JButton boutonNumberThree = new JButton();
-		boutonNumberThree.setText("Effacer la scène");
+		boutonNumberThree.setText("Gestion xmlr");
 		boutonNumberThree.setToolTipText("Pour tout enlever !");
 		indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT.gridx=0;	//permet de mettre le bouton en-dessous
 		jPannelZoneGauche.add(boutonNumberThree, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
@@ -129,3 +128,11 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		frame.setVisible(true);        
 	}
 }
+/*TODO : pour comprendre les éléments de la scène
+ * fonction à écrire pour sortir les chlidren, 
+ * qu'est-ce qu'une scène
+ * de quoi est composé un arbre en 3D
+ */
+//        traceScene(scene);
+
+
