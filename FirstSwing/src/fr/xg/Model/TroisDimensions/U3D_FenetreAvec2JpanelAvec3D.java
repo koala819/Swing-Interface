@@ -12,11 +12,16 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
-import javax.media.j3d.GraphicsConfigTemplate3D;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -28,12 +33,10 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 	private JFrame frame = new JFrame();
 	private GridBagLayout grilleDePositionnement = new GridBagLayout();
 	private GridBagConstraints indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT = new GridBagConstraints();
-	BranchGroup scene = new BranchGroup();
+	BranchGroup scene = null;
+
 	public U3D_FenetreAvec2JpanelAvec3D()
 	{
-
-
-
 		/*
 		 * DEFINITION JFRAME 
 		 */
@@ -67,7 +70,7 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		 * ZONE DROITE
 		 * pour afficher la 3D
 		 */
-		
+
 		//GraphicsConfigTemplate3D configurationGraphiqueDeLaTemplate3D = new GraphicsConfigTemplate3D();
 		Canvas3D Canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
 		jPannelDiviseEnDeux.add(Canvas3D);
@@ -76,9 +79,9 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		// This will move the ViewPlatform back a bit so the
 		// objects in the scene can be viewed.
 		universe.getViewingPlatform().setNominalViewingTransform();
-		universe.getViewer().getView().setMinimumFrameCycleTime(30);
+		//universe.getViewer().getView().setMinimumFrameCycleTime(30);
 
-		
+
 		/*
 		 * BOUTONS
 		 * permet l'appel de formes 3D 
@@ -88,14 +91,14 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		boutonNumberOne.setToolTipText("Affiche le texte JCanvas");
 		jPannelZoneGauche.add(boutonNumberOne, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberOne.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				scene.setCapability(BranchGroup.ALLOW_DETACH);
-				scene.removeAllChildren();
-				BranchGroup childScene = U3D_Forme3D_Texte3D.createSceneGraph(Canvas3D, false, true);
-				scene.addChild(childScene);
-				
-				//
+			public void actionPerformed(ActionEvent e)
+			{
+				if (scene != null)
+				{
+					scene.detach();
+				}
+
+				scene = U3D_Forme3D_Texte3D.createSceneGraph(Canvas3D, true, true);
 				universe.addBranchGraph(scene);				
 			}
 		});
@@ -106,24 +109,44 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT.gridx=0;	//permet de mettre le bouton en-dessous
 		jPannelZoneGauche.add(boutonNumberTwo, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberTwo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				BranchGroup scene = U3D_Forme3D_CUBE.createSceneGraph();
+			public void actionPerformed(ActionEvent e)
+			{
+				if (scene != null)
+				{
+					scene.detach();
+				}
+				scene = U3D_Forme3D_CUBE.createSceneGraph();
 				universe.addBranchGraph(scene);
 			}
 		});		
-		
+
 		JButton boutonNumberThree = new JButton();
-		boutonNumberThree.setText("Gestion xmlr");
-		boutonNumberThree.setToolTipText("Pour tout enlever !");
+		boutonNumberThree.setText("Ouvrir Fichier WRL");
+		boutonNumberThree.setToolTipText("charge un fichier vrml pour l'afficher dans le Jpannel de droite");
 		indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT.gridx=0;	//permet de mettre le bouton en-dessous
 		jPannelZoneGauche.add(boutonNumberThree, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberThree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("je ne sers à rien");
+				JFileChooser select=new JFileChooser("");
+
+				int result= select.showOpenDialog(frame);
+				if(result==JFileChooser.APPROVE_OPTION)
+				{
+					File file=select.getSelectedFile();
+					String toto = file.toString();
+					System.out.println("fichier sélectionné :: " + toto);
+					U3D_ChargerVRML bg = new U3D_ChargerVRML();
+					if (scene != null)
+					{
+						scene.detach();
+					}
+					scene = bg.ouvreVRML(toto);
+					universe.addBranchGraph(scene);
+				}
+
 			}
 		});
-		
+
 		//OBLIGATOIRE de mettre à la fin pour afficher le rendu
 		frame.setVisible(true);        
 	}

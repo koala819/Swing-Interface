@@ -41,6 +41,8 @@ public class U3D_Forme3D_CUBE {
 		rotator.setSchedulingBounds(bounds);
 		objRoot.addChild(rotator);
 
+		objRoot.setCapability(BranchGroup.ALLOW_DETACH);
+		
 		// Have Java 3D perform optimizations on this scene graph.
 		objRoot.compile();
 

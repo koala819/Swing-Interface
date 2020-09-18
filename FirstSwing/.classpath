@@ -6,9 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java3Dlib"/>
-	<classpathentry kind="lib" path="C:/Users/koala/eclipse/jee-2020-06/eclipse/plugins/fr.trevidos.GLShaderEditors_1.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/koala/eclipse/jee-2020-06/eclipse/plugins/fr.trevidos.GLShaderFiles_1.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/koala/eclipse/jee-2020-06/eclipse/plugins/fr.trevidos.GLShaderTools_1.0.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java3D"/>
+	<classpathentry kind="lib" path="libs/j3d-vrml97.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

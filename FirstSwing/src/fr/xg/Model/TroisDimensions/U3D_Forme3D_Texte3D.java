@@ -119,6 +119,8 @@ public class U3D_Forme3D_Texte3D {
 			objRoot.addChild(rotator);
 		}
 
+		objRoot.setCapability(BranchGroup.ALLOW_DETACH);
+		objRoot.compile();
 		return objRoot;
 	}
 }
