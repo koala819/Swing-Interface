@@ -13,33 +13,29 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 
 import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Canvas3D;
+import javax.media.j3d.GraphicsConfigTemplate3D;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import com.sun.j3d.exp.swing.JCanvas3D;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
-public class U3D_FenetreAvec2JpanelAvec3D  {
-	//protected static Component frame;
-	private JFrame frame = new JFrame();
-	private GridBagLayout grilleDePositionnement = new GridBagLayout();
-	private GridBagConstraints indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT = new GridBagConstraints();
-	BranchGroup scene = null;
-
+public class U3D_FenetreAvec2JpanelAvec3D
+{
+	private BranchGroup scene = null;
+	private SimpleUniverse universe = null;
+	
 	public U3D_FenetreAvec2JpanelAvec3D()
 	{
 		/*
 		 * DEFINITION JFRAME 
 		 */
+		JFrame frame = new JFrame();
 		frame.setTitle("Ma première animation 3D");
 		frame.setSize(600, 400);
 		frame.setResizable(true);
@@ -63,23 +59,16 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		 */
 		JPanel jPannelZoneGauche= new JPanel();
 		jPannelZoneGauche.setBackground(new Color(187, 210, 225));
-		jPannelZoneGauche.setLayout(grilleDePositionnement); //On applique au JPanel (de gauche) une grille de positionnement pour placer les éléments comme on le souhaite
+		jPannelZoneGauche.setLayout(new GridBagLayout()); //On applique au JPanel (de gauche) une grille de positionnement pour placer les éléments comme on le souhaite
 		jPannelDiviseEnDeux.add(jPannelZoneGauche);
 
-		/*
-		 * ZONE DROITE
-		 * pour afficher la 3D
-		 */
-
-		//GraphicsConfigTemplate3D configurationGraphiqueDeLaTemplate3D = new GraphicsConfigTemplate3D();
-		Canvas3D Canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
-		jPannelDiviseEnDeux.add(Canvas3D);
-		//jCanvas3D.setSize(2,2); // taille non prise en compte, mais utile pour la définition de l'objet SimpleUniverse
-		SimpleUniverse universe = new SimpleUniverse(Canvas3D);
-		// This will move the ViewPlatform back a bit so the
-		// objects in the scene can be viewed.
+		GraphicsConfigTemplate3D configurationGraphiqueDeLaTemplate3D = new GraphicsConfigTemplate3D();
+		JCanvas3D jCanvas3D = new JCanvas3D(configurationGraphiqueDeLaTemplate3D);
+		jPannelDiviseEnDeux.add(jCanvas3D);
+		jCanvas3D.setSize(2,2); // taille non prise en compte, mais utile pour la définition de l'objet SimpleUniverse
+		SimpleUniverse universe = new SimpleUniverse(jCanvas3D.getOffscreenCanvas3D());
 		universe.getViewingPlatform().setNominalViewingTransform();
-		//universe.getViewer().getView().setMinimumFrameCycleTime(30);
+		
 
 
 		/*
@@ -87,6 +76,7 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		 * permet l'appel de formes 3D 
 		 */
 		JButton boutonNumberOne = new JButton();
+		GridBagConstraints indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT = new GridBagConstraints();
 		boutonNumberOne.setText("Afficher texte qui Tourne");
 		boutonNumberOne.setToolTipText("Affiche le texte JCanvas");
 		jPannelZoneGauche.add(boutonNumberOne, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
@@ -98,7 +88,7 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 					scene.detach();
 				}
 
-				scene = U3D_Forme3D_Texte3D.createSceneGraph(Canvas3D, true, true);
+				scene = U3D_Forme3D_Texte3D.createSceneGraph(jCanvas3D, true, true);
 				universe.addBranchGraph(scene);				
 			}
 		});
@@ -126,24 +116,40 @@ public class U3D_FenetreAvec2JpanelAvec3D  {
 		indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT.gridx=0;	//permet de mettre le bouton en-dessous
 		jPannelZoneGauche.add(boutonNumberThree, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberThree.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				JFileChooser select=new JFileChooser("");
 
 				int result= select.showOpenDialog(frame);
 				if(result==JFileChooser.APPROVE_OPTION)
 				{
 					File file=select.getSelectedFile();
-					String toto = file.toString();
-					System.out.println("fichier sélectionné :: " + toto);
-					U3D_ChargerVRML bg = new U3D_ChargerVRML();
+					String fichierSelectionneVRMLaOuvrir = file.toString();
+					System.out.println("fichier sélectionné :: " + fichierSelectionneVRMLaOuvrir);
 					if (scene != null)
 					{
 						scene.detach();
 					}
-					scene = bg.ouvreVRML(toto);
-					universe.addBranchGraph(scene);
+					scene = U3D_ChargerVRML.ouvreVRML(jCanvas3D, fichierSelectionneVRMLaOuvrir, universe);
 				}
 
+			}
+		});
+		
+		JButton boutonNumberFour = new JButton();
+		boutonNumberFour.setText("Texte tourne / zoom / panoramique");
+		boutonNumberFour.setToolTipText("gestion du texte à la souris");
+		jPannelZoneGauche.add(boutonNumberFour, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
+		boutonNumberFour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				if (scene != null)
+				{
+					scene.detach();
+				}
+
+				scene = U3D_Forme3D_MonMouseTEXT.createSceneGraph(jCanvas3D);
+				universe.addBranchGraph(scene);				
 			}
 		});
 

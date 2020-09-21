@@ -7,7 +7,6 @@ import javax.media.j3d.AmbientLight;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Canvas3D;
 import javax.media.j3d.DirectionalLight;
 import javax.media.j3d.Font3D;
 import javax.media.j3d.FontExtrusion;
@@ -23,10 +22,12 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
+import com.sun.j3d.exp.swing.JCanvas3D;
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 
-public class U3D_Forme3D_Texte3D {
-	static BranchGroup createSceneGraph(Canvas3D canvas, boolean isInteractive, boolean isRandom)
+public class U3D_Forme3D_Texte3D
+{
+	static BranchGroup createSceneGraph(JCanvas3D canvas, boolean isInteractive, boolean isRandom)
 	{
 		// Create the root of the branch graph
 		BranchGroup objRoot = new BranchGroup();
@@ -88,12 +89,14 @@ public class U3D_Forme3D_Texte3D {
 		objRoot.addChild(light2);
 
 
-		if (true == isInteractive) {
+		if (true == isInteractive)
+		{
 			MouseRotate mr = new MouseRotate(canvas, objRot);
 			mr.setSchedulingBounds(bounds);
 			mr.setSchedulingInterval(1);
 			objRoot.addChild(mr);
-		} else {
+		}
+		else {
 			// Create a new Behavior object that will perform the
 			// desired operation on the specified transform and add
 			// it into the scene graph.
