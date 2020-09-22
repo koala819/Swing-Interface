@@ -6,7 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java3D"/>
+	<classpathentry kind="lib" path="C:/Users/koala/git/U3D/FirstSwing/libs/j3dcore.jar"/>
+	<classpathentry kind="lib" path="C:/Users/koala/git/U3D/FirstSwing/libs/j3dutils.jar"/>
 	<classpathentry kind="lib" path="libs/j3d-vrml97.jar"/>
+	<classpathentry kind="lib" path="C:/Users/koala/git/U3D/FirstSwing/libs/vecmath.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/java3D"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -152,6 +152,23 @@ public class U3D_FenetreAvec2JpanelAvec3D
 				universe.addBranchGraph(scene);				
 			}
 		});
+		
+		JButton boutonNumberFive = new JButton();
+		boutonNumberFive.setText("Trois cubes");
+		boutonNumberFive.setToolTipText("des petits cubes toujours des petits cubes");
+		jPannelZoneGauche.add(boutonNumberFive, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
+		boutonNumberFive.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				if (scene != null)
+				{
+					scene.detach();
+				}
+
+				scene = U3D_Forme3D_MonMouseCUBE3D.createSceneGraph(jCanvas3D);
+				universe.addBranchGraph(scene);				
+			}
+		});
 
 		//OBLIGATOIRE de mettre à la fin pour afficher le rendu
 		frame.setVisible(true);        
