@@ -1,4 +1,4 @@
-package fr.xg.Model.TroisDimensions;
+package fr.xg.Exemple;
 
 import java.applet.Applet;
 import java.awt.BorderLayout;

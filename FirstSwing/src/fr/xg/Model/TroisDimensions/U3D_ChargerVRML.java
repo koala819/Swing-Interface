@@ -42,12 +42,12 @@ public class U3D_ChargerVRML
 		racinePourRotation.addChild(groupeRotation);
 		groupeRotation.addChild(sceneGroup);		
 
-		BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 500.0);
+		/*BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 500.0);
 
 		MouseRotate mr = new MouseRotate(canvas3D, groupeRotation);
 		mr.setSchedulingBounds(bounds);
 		mr.setSchedulingInterval(1);
-		sceneGroup.addChild(mr);
+		sceneGroup.addChild(mr);*/
 		//positionneLeZoom(sceneGroup, universe);
 
 		return racinePourRotation;

@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.GraphicsConfigTemplate3D;
 import javax.swing.JButton;
@@ -21,9 +22,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.vecmath.Point3d;
 
 import com.sun.j3d.exp.swing.JCanvas3D;
+import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.universe.SimpleUniverse;
+import com.sun.j3d.utils.universe.ViewingPlatform;
 
 public class U3D_FenetreAvec2JpanelAvec3D
 {
@@ -36,7 +40,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		 * DEFINITION JFRAME 
 		 */
 		JFrame frame = new JFrame();
-		frame.setTitle("Ma première animation 3D");
+		frame.setTitle("Animations 3D");
 		frame.setSize(600, 400);
 		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +71,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		jPannelDiviseEnDeux.add(jCanvas3D);
 		jCanvas3D.setSize(2,2); // taille non prise en compte, mais utile pour la définition de l'objet SimpleUniverse
 		SimpleUniverse universe = new SimpleUniverse(jCanvas3D.getOffscreenCanvas3D());
-		universe.getViewingPlatform().setNominalViewingTransform();
+		universe.getViewingPlatform().setNominalViewingTransform(); // recule un peu la ViewPlatform pour que les objets de la scène puissent être vus
 		
 
 
@@ -77,7 +81,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		 */
 		JButton boutonNumberOne = new JButton();
 		GridBagConstraints indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT = new GridBagConstraints();
-		boutonNumberOne.setText("Afficher texte qui Tourne");
+		boutonNumberOne.setText("Ne faire que tourner le texte");
 		boutonNumberOne.setToolTipText("Affiche le texte JCanvas");
 		jPannelZoneGauche.add(boutonNumberOne, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberOne.addActionListener(new ActionListener() {
@@ -94,7 +98,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		});
 
 		JButton boutonNumberTwo = new JButton();
-		boutonNumberTwo.setText("Afficher Cube qui tourne");
+		boutonNumberTwo.setText("Cube qui tourne tout le temps");
 		boutonNumberTwo.setToolTipText("Affiche un joli cube qui tourne tout le temps");
 		indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT.gridx=0;	//permet de mettre le bouton en-dessous
 		jPannelZoneGauche.add(boutonNumberTwo, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
@@ -137,7 +141,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		});
 		
 		JButton boutonNumberFour = new JButton();
-		boutonNumberFour.setText("Texte tourne / zoom / panoramique");
+		boutonNumberFour.setText("Texte tourne + zoom + panoramique");
 		boutonNumberFour.setToolTipText("gestion du texte à la souris");
 		jPannelZoneGauche.add(boutonNumberFour, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberFour.addActionListener(new ActionListener() {
@@ -154,7 +158,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		});
 		
 		JButton boutonNumberFive = new JButton();
-		boutonNumberFive.setText("Trois cubes");
+		boutonNumberFive.setText("Trois cubes qui bougent chacun avec la souris");
 		boutonNumberFive.setToolTipText("des petits cubes toujours des petits cubes");
 		jPannelZoneGauche.add(boutonNumberFive, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
 		boutonNumberFive.addActionListener(new ActionListener() {
@@ -167,6 +171,45 @@ public class U3D_FenetreAvec2JpanelAvec3D
 
 				scene = U3D_Forme3D_MonMouseCUBE3D.createSceneGraph(jCanvas3D);
 				universe.addBranchGraph(scene);				
+			}
+		});
+		
+		JButton boutonNumberSix = new JButton();
+		boutonNumberSix.setText("Changer le point de vue de trois cubes");
+		boutonNumberSix.setToolTipText("Un cube un jour des cubes toujours");
+		jPannelZoneGauche.add(boutonNumberSix, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
+		boutonNumberSix.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				if (scene != null)
+				{
+					scene.detach();
+				}
+
+				scene = U3D_Forme3D_MonMouseCUBE3D_PointOfView.createSceneGraph(jCanvas3D);
+				
+////				universe.addBranchGraph(scene);
+//				//new
+//				Transform3D t3d = new Transform3D();
+//				/*lookAt (eye, center, up)
+//				 * eye :  	l'emplacement de l'œil
+//				 * center : un point du monde virtuel où l'œil regarde
+//				 * up : 	un vecteur haut spécifiant la direction ascendante du tronc
+//				 */
+//				t3d.lookAt(new Point3d(2.0, 3.0, 1.0), new Point3d(0.0, 0.0, 0.0), new Vector3d(0.0, 1.0, 0.0));
+//				t3d.invert();
+//				universe.getViewingPlatform().getViewPlatformTransform().setTransform(t3d);
+			    
+				BoundingSphere bounds = new BoundingSphere(new Point3d(0, 0, 0), 1000);
+				
+				OrbitBehavior orbit = new OrbitBehavior();
+			    orbit.setSchedulingBounds(bounds);
+
+			    ViewingPlatform vp = universe.getViewingPlatform();
+			    vp.setViewPlatformBehavior(orbit);
+				
+				universe.addBranchGraph(scene);
+				
 			}
 		});
 
