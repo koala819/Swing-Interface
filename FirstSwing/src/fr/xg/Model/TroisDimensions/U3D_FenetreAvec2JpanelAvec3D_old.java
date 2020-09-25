@@ -29,12 +29,12 @@ import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
 
-public class U3D_FenetreAvec2JpanelAvec3D
+public class U3D_FenetreAvec2JpanelAvec3D_old
 {
 	private BranchGroup scene = null;
 	private SimpleUniverse universe = null;
 	
-	public U3D_FenetreAvec2JpanelAvec3D()
+	public U3D_FenetreAvec2JpanelAvec3D_old()
 	{
 		/*
 		 * DEFINITION JFRAME 
@@ -135,6 +135,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 						scene.detach();
 					}
 					scene = U3D_ChargerVRML.ouvreVRML(jCanvas3D, fichierSelectionneVRMLaOuvrir, universe);
+
 				}
 
 			}
@@ -188,23 +189,11 @@ public class U3D_FenetreAvec2JpanelAvec3D
 
 				scene = U3D_Forme3D_MonMouseCUBE3D_PointOfView.createSceneGraph(jCanvas3D);
 				
-////				universe.addBranchGraph(scene);
-//				//new
-//				Transform3D t3d = new Transform3D();
-//				/*lookAt (eye, center, up)
-//				 * eye :  	l'emplacement de l'œil
-//				 * center : un point du monde virtuel où l'œil regarde
-//				 * up : 	un vecteur haut spécifiant la direction ascendante du tronc
-//				 */
-//				t3d.lookAt(new Point3d(2.0, 3.0, 1.0), new Point3d(0.0, 0.0, 0.0), new Vector3d(0.0, 1.0, 0.0));
-//				t3d.invert();
-//				universe.getViewingPlatform().getViewPlatformTransform().setTransform(t3d);
+
 			    
 				BoundingSphere bounds = new BoundingSphere(new Point3d(0, 0, 0), 1000);
-				
 				OrbitBehavior orbit = new OrbitBehavior();
 			    orbit.setSchedulingBounds(bounds);
-
 			    ViewingPlatform vp = universe.getViewingPlatform();
 			    vp.setViewPlatformBehavior(orbit);
 				
@@ -217,10 +206,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 		frame.setVisible(true);        
 	}
 }
-/*TODO : pour comprendre les éléments de la scène
- * fonction à écrire pour sortir les chlidren, 
- * qu'est-ce qu'une scène
- * de quoi est composé un arbre en 3D
+/*TODO : reset view <=> viewALL
  */
 //        traceScene(scene);
 

@@ -18,13 +18,13 @@ import com.sun.j3d.utils.universe.ViewingPlatform;
 
 public class U3D_ChargerVRML
 {
-	public static BranchGroup ouvreVRML(JCanvas3D canvas3D, String avatar, SimpleUniverse universe)
+	public static BranchGroup ouvreVRML(JCanvas3D canvas3D, String fichierSelectionneVRMLaOuvrir, SimpleUniverse universe)
 	{
 		VrmlLoader loader = new VrmlLoader();
 		Scene sceneVRML = null; //scene VRML à charger
 		try   
 		{
-			sceneVRML = loader.load(avatar);
+			sceneVRML = loader.load(fichierSelectionneVRMLaOuvrir);
 		}
 		catch (Exception e)
 		{
@@ -32,15 +32,16 @@ public class U3D_ChargerVRML
 			System.exit(1);
 		}		
 
-		BranchGroup sceneGroup = sceneVRML.getSceneGroup();
-		sceneGroup.setCapability(BranchGroup.ALLOW_DETACH);
-		sceneGroup.setCapability(BranchGroup.ALLOW_BOUNDS_READ);
+		BranchGroup objBranchGroup = sceneVRML.getSceneGroup();
+		objBranchGroup.setCapability(BranchGroup.ALLOW_DETACH);
+		objBranchGroup.compile();
 
-		BranchGroup racinePourRotation = new BranchGroup();
-		TransformGroup groupeRotation = new TransformGroup();
-		groupeRotation.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-		racinePourRotation.addChild(groupeRotation);
-		groupeRotation.addChild(sceneGroup);		
+		universe.addBranchGraph(objBranchGroup);
+//		BranchGroup racinePourRotation = new BranchGroup();
+//		TransformGroup groupeRotation = new TransformGroup();
+//		groupeRotation.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+//		racinePourRotation.addChild(groupeRotation);
+//		groupeRotation.addChild(objBranchGroup);		
 
 		/*BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 500.0);
 
@@ -50,7 +51,7 @@ public class U3D_ChargerVRML
 		sceneGroup.addChild(mr);*/
 		//positionneLeZoom(sceneGroup, universe);
 
-		return racinePourRotation;
+		return objBranchGroup;
 	}
 	
 	private static void positionneLeZoom(BranchGroup sceneGroup, SimpleUniverse universe)

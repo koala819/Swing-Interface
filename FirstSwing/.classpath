@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="libs/j3dcore.jar"/>
 	<classpathentry kind="lib" path="libs/j3dutils.jar"/>
 	<classpathentry kind="lib" path="libs/vecmath.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xavier/Desktop/WorkspaceEclipse/U3D/FirstSwing/libs/junit-4.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
