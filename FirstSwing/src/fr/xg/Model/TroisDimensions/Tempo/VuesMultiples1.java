@@ -1,6 +1,6 @@
 //http://deven3d.free.fr/java3d/chap09.htm
 
-package fr.xg.Model.TroisDimensions;
+package fr.xg.Model.TroisDimensions.Tempo;
 
 // Etape 1 : importation des packages Java 2
 import java.applet.Applet;

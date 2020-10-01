@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.vecmath.Point3d;
 
+import com.sun.glass.ui.View;
 import com.sun.j3d.exp.swing.JCanvas3D;
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.universe.SimpleUniverse;
@@ -199,6 +200,21 @@ public class U3D_FenetreAvec2JpanelAvec3D_old
 				
 				universe.addBranchGraph(scene);
 				
+			}
+		});
+		
+		JButton boutonNumberSeven = new JButton();
+		boutonNumberSeven.setText("RAZ");
+		boutonNumberSeven.setToolTipText("re initialise la scene");
+		jPannelZoneGauche.add(boutonNumberSeven, indicationsDePositionnementEtDeDimensionAObjetGRIDBAGLAYOUT);
+		boutonNumberSeven.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				/*if (scene != null)
+				{
+					scene.detach();
+				}*/
+				 Object view = universe.getViewer().getView();			
 			}
 		});
 

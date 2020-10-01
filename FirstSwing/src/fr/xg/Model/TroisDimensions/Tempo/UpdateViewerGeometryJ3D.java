@@ -1,4 +1,4 @@
-package fr.xg.Model.TroisDimensions;
+package fr.xg.Model.TroisDimensions.Tempo;
 
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
