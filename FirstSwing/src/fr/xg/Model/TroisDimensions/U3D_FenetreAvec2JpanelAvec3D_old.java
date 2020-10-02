@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Enumeration;
 
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
@@ -37,6 +38,10 @@ public class U3D_FenetreAvec2JpanelAvec3D_old
 	
 	public U3D_FenetreAvec2JpanelAvec3D_old()
 	{
+		
+		
+		
+		
 		/*
 		 * DEFINITION JFRAME 
 		 */
@@ -197,6 +202,7 @@ public class U3D_FenetreAvec2JpanelAvec3D_old
 			    orbit.setSchedulingBounds(bounds);
 			    ViewingPlatform vp = universe.getViewingPlatform();
 			    vp.setViewPlatformBehavior(orbit);
+
 				
 				universe.addBranchGraph(scene);
 				
@@ -210,11 +216,20 @@ public class U3D_FenetreAvec2JpanelAvec3D_old
 		boutonNumberSeven.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				/*if (scene != null)
+				if (scene == null)
 				{
-					scene.detach();
-				}*/
-				 Object view = universe.getViewer().getView();			
+					System.out.println("ERRREUR--scene vide--ERREUR");
+					return;
+				}
+				Enumeration children = scene.getAllChildren();				
+
+				while (children.hasMoreElements())
+				{
+				  Object element = children.nextElement();
+				  
+				  System.out.println("\nELEMENT: " + element);
+				  System.out.println(  "CLASSE : " + element.getClass().getSimpleName());
+				}			
 			}
 		});
 
