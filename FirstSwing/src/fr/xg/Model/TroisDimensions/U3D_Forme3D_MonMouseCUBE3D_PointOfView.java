@@ -58,7 +58,7 @@ public class U3D_Forme3D_MonMouseCUBE3D_PointOfView
 		return objBranchGroup;
 	}
 
-	
+	/*
 	private static void pointeurSouris(JCanvas3D jCanvas3D, TransformGroup objTransformGroup)
 	{
 		// Définit zone d'infuence où au delà de laquelle la rotation n'agit plus
@@ -84,5 +84,5 @@ public class U3D_Forme3D_MonMouseCUBE3D_PointOfView
 		MouseZoom zoomBehavior = new MouseZoom(jCanvas3D, objTransformGroup);
 		zoomBehavior.setSchedulingBounds(bounds);
 		objTransformGroup.addChild(zoomBehavior);
-	}
+	}*/
 }

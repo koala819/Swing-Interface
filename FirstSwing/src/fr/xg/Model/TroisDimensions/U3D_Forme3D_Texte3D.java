@@ -89,38 +89,39 @@ public class U3D_Forme3D_Texte3D
 		objRoot.addChild(light2);
 
 
-		if (true == isInteractive)
-		{
-			MouseRotate mr = new MouseRotate(canvas, objRot);
-			mr.setSchedulingBounds(bounds);
-			mr.setSchedulingInterval(1);
-			objRoot.addChild(mr);
-		}
-		else {
-			// Create a new Behavior object that will perform the
-			// desired operation on the specified transform and add
-			// it into the scene graph.
-			Transform3D yAxis = new Transform3D();
-
-			// rotation speed is randomized a bit so that it does not go at the same speed on every canvases,
-			// which will make it more natural and express the differences between every present universes
-			Alpha rotationAlpha = null;
-
-			if (true == isRandom) {
-				int duration = Math.max(2000, (int) (Math.random() * 8000.));
-				rotationAlpha = new Alpha(-1,
-						(int) ((double) duration * Math.random()), 0, duration,
-						0, 0);
-			} else {
-				rotationAlpha = new Alpha(-1, 4000);
-			}
-
-			RotationInterpolator rotator = new RotationInterpolator(rotationAlpha,
-					objRot, yAxis, 0.0f, (float) Math.PI * 2.0f);
-
-			rotator.setSchedulingBounds(bounds);
-			objRoot.addChild(rotator);
-		}
+		
+//		if (true == isInteractive)
+//		{
+//			MouseRotate mr = new MouseRotate(canvas, objRot);
+//			mr.setSchedulingBounds(bounds);
+//			mr.setSchedulingInterval(1);
+//			objRoot.addChild(mr);
+//		}
+//		else {
+//			// Create a new Behavior object that will perform the
+//			// desired operation on the specified transform and add
+//			// it into the scene graph.
+//			Transform3D yAxis = new Transform3D();
+//
+//			// rotation speed is randomized a bit so that it does not go at the same speed on every canvases,
+//			// which will make it more natural and express the differences between every present universes
+//			Alpha rotationAlpha = null;
+//
+//			if (true == isRandom) {
+//				int duration = Math.max(2000, (int) (Math.random() * 8000.));
+//				rotationAlpha = new Alpha(-1,
+//						(int) ((double) duration * Math.random()), 0, duration,
+//						0, 0);
+//			} else {
+//				rotationAlpha = new Alpha(-1, 4000);
+//			}
+//
+//			RotationInterpolator rotator = new RotationInterpolator(rotationAlpha,
+//					objRot, yAxis, 0.0f, (float) Math.PI * 2.0f);
+//
+//			rotator.setSchedulingBounds(bounds);
+//			objRoot.addChild(rotator);
+//		}
 
 		objRoot.setCapability(BranchGroup.ALLOW_DETACH);
 		objRoot.compile();

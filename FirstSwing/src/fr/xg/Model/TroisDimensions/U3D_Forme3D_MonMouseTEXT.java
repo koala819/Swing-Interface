@@ -38,21 +38,21 @@ public class U3D_Forme3D_MonMouseTEXT {
 		BoundingSphere bounds = new BoundingSphere(new Point3d(0, 0, 0), 1000);
 
 		// Attacher comportement MouseRotate afin de faire pivoter le texte avec le bouton gauche de la souris
-		MouseRotate mr = new MouseRotate(jCanvas3D, objetTransformGroup);
+		/*MouseRotate mr = new MouseRotate(jCanvas3D, objetTransformGroup);
 		mr.setSchedulingBounds(bounds);
 		mr.setSchedulingInterval(1);
-		objRoot.addChild(mr);
-		
+		objRoot.addChild(mr);*/
+	
 
 		// Attacher comportement MouseTranslate afin de faire glisser le texte avec le bouton droit de la souris
-		MouseTranslate translate = new MouseTranslate(objetTransformGroup);
+		/*MouseTranslate translate = new MouseTranslate(objetTransformGroup);
 		translate.setSchedulingBounds(new BoundingSphere());
-		objRoot.addChild(translate);
+		objRoot.addChild(translate);*/
 
 		// Creation comportement zoom a la souris
-		MouseZoom zoom = new MouseZoom(objetTransformGroup);
+		/*MouseZoom zoom = new MouseZoom(objetTransformGroup);
 		zoom.setSchedulingBounds(new BoundingSphere());
-		objRoot.addChild(zoom);
+		objRoot.addChild(zoom);*/
 
 		objRoot.setCapability(BranchGroup.ALLOW_DETACH);
 		objRoot.compile();
