@@ -1,4 +1,4 @@
-package fr.xg.Model.ParcoursArbre;
+package fr.xg.Exemple;
 
 public class Test {
 	public static void main(String[] args) {

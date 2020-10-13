@@ -21,6 +21,7 @@ public class U3D_ChargerVRML
 	public static BranchGroup ouvreVRML(JCanvas3D canvas3D, String fichierSelectionneVRMLaOuvrir, SimpleUniverse universe)
 	{
 		VrmlLoader loader = new VrmlLoader();
+		
 		Scene sceneVRML = null; //scene VRML à charger
 		try   
 		{

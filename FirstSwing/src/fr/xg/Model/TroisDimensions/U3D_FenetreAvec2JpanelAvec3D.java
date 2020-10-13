@@ -19,23 +19,20 @@ import java.util.Enumeration;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.GraphicsConfigTemplate3D;
+import javax.media.j3d.Group;
 import javax.media.j3d.Shape3D;
-import javax.media.j3d.Transform3D;
-import javax.media.j3d.TransformGroup;
+import javax.media.j3d.TriangleArray;
 import javax.media.j3d.View;
-import javax.media.j3d.ViewPlatform;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.vecmath.Point3d;
-import javax.vecmath.Vector3d;
 
 import com.sun.j3d.exp.swing.JCanvas3D;
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.universe.SimpleUniverse;
-import com.sun.j3d.utils.universe.Viewer;
 import com.sun.j3d.utils.universe.ViewingPlatform;
 
 public class U3D_FenetreAvec2JpanelAvec3D
@@ -155,7 +152,7 @@ public class U3D_FenetreAvec2JpanelAvec3D
 						scene.detach();
 					}
 					scene = U3D_ChargerVRML.ouvreVRML(jCanvas3D, fichierSelectionneVRMLaOuvrir, universe);
-
+					System.out.println("fichier chargé ;-)");
 				}
 
 			}
@@ -260,94 +257,65 @@ public class U3D_FenetreAvec2JpanelAvec3D
 					System.out.println("!!!ERRREUR--scene vide--ERREUR!!!");
 					return;
 				}
-				Enumeration children = scene.getAllChildren();	
+				Enumeration children = scene.getAllChildren();
+				//AlaRechercheDeLaRacinePerdue.chercheTrouveEtAffiche(children);
 
-				while (children.hasMoreElements())
-				{
-					Object element = children.nextElement();
-					//					System.out.println("\nELEMENT: " + element);
-					//					System.out.println(  "CLASSE : " + element.getClass().getSimpleName());
-					if (element instanceof TransformGroup) {
-						Enumeration children2 = ((TransformGroup) element).getAllChildren();	
-						System.out.println("\n--------------------------------------------------------------------");
-						System.out.println("DECOUVERTE DES ELEMENTS DE TransformGroup");
-						System.out.println("--------------------------------------------------------------------");
-						while (children2.hasMoreElements())
-						{
-							Object element2 = children2.nextElement();
-							System.out.println("\nELEMENT: " + element2);
-							System.out.println(  "CLASSE : " + element2.getClass().getSimpleName());
-							if (element2 instanceof Shape3D) {
-								Enumeration children3 = ((Shape3D) element2).getAllGeometries();
-								System.out.println("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-								System.out.println("Enumeration des composants géométriques");
-								System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-								while (children3.hasMoreElements())
-								{
-									Object element3 = children3.nextElement();
-									System.out.println("\nELEMENT: " + element3);
-									System.out.println(  "CLASSE : " + element3.getClass().getSimpleName());
-								}/*FIN while (children3.hasMoreElements())*/
-								System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-								System.out.println("FIN DE LA DECOUVERTE DES ELEMENTS DE TransformGroup");
-								System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-							}/*FIN if (element2 instanceof Shape3D)*/
-
-
-
-						}/*FIN while (children2.hasMoreElements())*/
-						System.out.println("--------------------------------------------------------------------");
-						System.out.println("FIN DE LA DECOUVERTE DES ELEMENTS DE TransformGroup");
-						System.out.println("--------------------------------------------------------------------\n");
-
-					}/*FIN if (element instanceof TransformGroup)*/
-
-					/*
-					 * VERIF 2 : Shape3D
-					 */
-					if (element instanceof Shape3D) {
-						Enumeration children3 = ((Shape3D) element).getAllGeometries();
-						System.out.println("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-						System.out.println("Enumeration des composants géométriques");
-						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-						while (children3.hasMoreElements())
-						{
-							Object element3 = children3.nextElement();
-							System.out.println("\nELEMENT: " + element3);
-							System.out.println(  "CLASSE : " + element3.getClass().getSimpleName());
-
-							/*Recuperation des coordonées des triangle*/
-							//							if (element3 instanceof TriangleArray)
-							//							{
-							//								TriangleArray tableauDeTriangles = (TriangleArray) element3;
-							//								int nbPoints = tableauDeTriangles.getVertexCount();
-							//
-							//								System.out.println("nbPoints :: " + nbPoints);
-							//								
-							//								for (int i=0; i<nbPoints; i++)
-							//								{
-							//									double[] coordinates = new double[3];
-							//									tableauDeTriangles.getCoordinates(i, coordinates);
-							//									
-							//
-							//									System.out.println("Point " + i + " :: X=" + coordinates[0] + " Y=" + coordinates[1] + " Z=" + coordinates[2]);
-							//								}
-							//							}/*FIN if (element2 instanceof TriangleArray)*/
-
-
-						}/*FIN while (children3.hasMoreElements())*/
-						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-						System.out.println("FIN DE Enumeration des composants géométriques");
-						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					}/*FIN if (element2 instanceof Shape3D)*/
-
-
-				}/*FIN while (children.hasMoreElements())*/			
+				System.out.println(scene.getClass().getSimpleName());
+				explore(scene, 1);
 			}/*FIN public void actionPerformed(ActionEvent e)*/
 		});/* FIN boutonNumberSeven.addActionListener(new ActionListener()*/
 
 		//OBLIGATOIRE de mettre à la fin pour afficher le rendu
 		frame.setVisible(true);        
+	}
+	
+	void explore(Group groupe, int nbTabulations)
+	{
+		Enumeration children = groupe.getAllChildren();
+		
+		while (children.hasMoreElements())
+		{
+			Object child = children.nextElement();
+			
+			indente(nbTabulations);
+			System.out.println(child.getClass().getSimpleName());
+			
+			if (child instanceof Group)
+			{
+				explore((Group)child, nbTabulations+1);
+			}
+			else if (child instanceof Shape3D)
+			{
+				explore((Shape3D)child, nbTabulations+1);
+			}
+			
+		}
+	}
+	
+	void explore(Shape3D shape3D, int nbTabulations)
+	{
+		Enumeration children3 = shape3D.getAllGeometries();
+		while (children3.hasMoreElements())
+		{
+			Object element3 = children3.nextElement();
+			indente(nbTabulations);
+			System.out.println(element3.getClass().getSimpleName());
+			
+			if (element3 instanceof TriangleArray)
+			{
+				TriangleArray triangleArray = (TriangleArray)element3;
+				int nbPoints = triangleArray.getVertexCount();
+
+				indente(nbTabulations);
+				System.out.println("nbPoints :: " + nbPoints);
+			}
+		}
+	}
+	
+	void indente(int nbTabulations)
+	{
+		for (int i=0; i<nbTabulations; i++)
+			System.out.print("\t");
 	}
 	
 }
