@@ -6,14 +6,14 @@
 
 <img align="right" width="500" height="500" src="00.jpg">
 
-# Travail de stage
+# Internship work
 
-Ce fut mes premiers pas avec Java 3D où j'ai réalisé une interface SWING
+It was my first steps with Java 3D where I realized a SWING interface
 
-<b>Création d'une fenêtre JAVA où on va trouver :</b><br>
-Barre de menus avec un bouton menu pour choisir un fichier<br>
-Fenêtre divisée en 2 champs<br> <ul>
- <li>champ gauche : boutons pour faire appraître des formes 3D et création d'un arbre de parcours</li>
- <li>champ droite : univers3D pour afficher et utiliser les formes 3D</li>
+<b>Make JAVA window where we will find :</b><br>
+Menu bar with a menu button to choose a file<br>
+Window divided into 2 fields<br> <ul>
+ <li>Left field: buttons to bring up 3D shapes and create a path tree</li>
+ <li>right field: univers3D to display and use 3D shapes</li>
  </ul>
 <img width="100%" src="01.jpg">
