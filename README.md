@@ -11,7 +11,7 @@
 It was my first steps with Java 3D where I realized a SWING interface
 
 <b>Make JAVA window where we will find :</b><br>
-Menu bar with a menu button to choose a file<br>
+Menu bar with a menu buttons to choose a file<br>
 Window divided into 2 fields<br> <ul>
  <li>Left field: buttons to bring up 3D shapes and create a path tree</li>
  <li>right field: univers3D to display and use 3D shapes</li>
